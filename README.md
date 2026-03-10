@@ -1,80 +1,87 @@
-# Deploying a Deep Learning model
+# Deep Learning Model Deployment with YOLOv3 & FastAPI
 
-A rapid guide to deploying a computer vision model trained to identify common objects in images, utilizing the YOLOv3 model and FastAPI.
+A hands-on project where I deployed a computer vision model capable of identifying and localizing common objects in images. Built using the YOLOv3 object detection model and served via FastAPI through Jupyter notebooks.
 
-## Setup
+**Built by:** Shubham Haranale
 
-The `cd` command allows you to change directories. Assuming you are at the directory where you issued the cloning command, type the following on your terminal.
+---
 
-```bash
-cd playground/01-deploying a machine learning model
-```
+## What This Project Does
 
-This will bring you to the `01-deploying a machine learning model` directory. The `ls` command allows you to list the files and directories.
-Type `ls` and let's take a quick look at the content inside `01-deploying a machine learning model` directory:
+This project demonstrates the full pipeline of taking a pre-trained deep learning model (YOLOv3) and deploying it as a working API service:
+
+- **Server** (`server.ipynb`) — Loads the YOLOv3 model and exposes it as a FastAPI endpoint that accepts images and returns predictions with bounding boxes
+- **Client** (`client.ipynb`) — Sends images to the server and displays the results with detected objects highlighted
+
+---
+
+## What I Learned
+
+- How to serve a deep learning model as a REST API using **FastAPI**
+- The difference between a model **training** environment and a model **serving** environment
+- How to structure a client-server architecture for ML inference
+- Managing Python dependencies and virtual environments for ML projects
+- Practical MLOps concepts from Andrew Ng's MLOps Specialization (DeepLearning.AI)
+
+---
+
+## Project Structure
 
 ```
 .
-└── 01-deploying a machine learning model (this directory)
-    ├── images (includes some images from ImageNet)
-    ├── server.ipynb (Part 1 of the ungraded lab)
-    ├── client.ipynb (Part 2 of the ungraded lab)
-    └── requirements.txt (python dependencies)
+├── images/                  # Sample input images (from ImageNet)
+├── images_uploaded/         # Images sent to the server
+├── images_predicted/        # Output images after inference
+├── images_with_boxes/       # Images with bounding boxes drawn
+├── assets/                  # Supporting assets
+├── server.ipynb             # FastAPI server with YOLOv3 model
+├── client.ipynb             # Client to send requests to the server
+└── requirements.txt         # Python dependencies
 ```
 
-## Python Virtual Environment with Conda
+---
 
-### Prerequisites: Have [conda](https://docs.conda.io/en/latest/) installed on your local machine.
+## Setup & Running Locally
 
-You will use Conda as an environment management system so that all the dependencies you need for this ungraded lab are stored in an isolated environment.
-
-Conda includes a lot of libraries so if you are only installing it to complete this lab , we suggest using [miniconda](https://docs.conda.io/en/latest/miniconda.html), which is a minimal version of conda.
-
-### 1. Creating a virtual Environment
-
-Now we assume that you either successfully installed conda or that it was previously available in your system. The first step is creating a new developing environment. Let's set a new environment with python 3.8 with this command:
+### 1. Create a virtual environment
 
 ```bash
-conda create --name mlep-w1-lab python=3.8
+conda create --name dl-deploy python=3.8
+conda activate dl-deploy
 ```
 
-After successfully creating the environment, you need to activate it by issuing this command:
-
-```bash
-conda activate mlep-w1-lab
-```
-
-At this point, you will do all your libraries installation and work in this environment. So, whenever working on this ungraded lab, check the mlep-w1-lab environment is active.
-
-### 2. Installing dependencies using PIP
-
-Before proceeding, double check that you are currently on the `01-deploying a machine learning model` directory, which includes the `requirements.txt` file. This file lists all the required dependencies and their respective versions.
-
-Now use the following command to install the required dependencies:
+### 2. Install dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-This command can take a while to run depending on the speed of your internet connection. Once this step completes you should be ready to spin up jupyter lab and begin working on the ungraded lab.
-
-### 3. Launching Jupyter Lab
-
-Jupyter lab was installed during the previous step so you can launch it with this command:
+### 3. Launch Jupyter Lab
 
 ```bash
 jupyter lab
 ```
 
-After execution, you will see some information printed on the terminal. Usually you will need to authenticate to use Jupyter lab. For this, copy the token that appears on your terminal, head over to [http://localhost:8888/lab](http://localhost:8888/lab) and paste it there. Your terminal's output should look very similar to the next image, in which the token has been highlighted for reference:
+### 4. Run the notebooks
 
-![Token in terminal](./assets/token.png)
+- Open and run **`server.ipynb`** first to start the FastAPI server
+- Then open and run **`client.ipynb`** to send images and see predictions
 
-### 4. Running the notebook
+---
 
-Within Jupyter lab you should be in the same directory where you used the `jupyter lab` command.
+## Tech Stack
 
-Look for the `server.ipynb` file and open it to begin the ungraded lab.
+- **Model:** YOLOv3 (object detection)
+- **API Framework:** FastAPI
+- **Environment:** Jupyter Lab, Conda, Python 3.8
+- **Concepts:** MLOps, model serving, REST API, client-server architecture
+
+---
+
+## Acknowledgement
+
+Project inspired by the [Machine Learning Engineering for Production (MLOps) Specialization](https://www.deeplearning.ai/courses/machine-learning-engineering-for-production-mlops/) by Andrew Ng, Laurence Moroney, and Robert Crowe on DeepLearning.AI.
+
 
 To stop jupyter lab once you are done with the lab just press `Ctrl + C` twice.
 
